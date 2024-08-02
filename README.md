@@ -1,6 +1,6 @@
 # Sample-efficient Multi-agent Reinforcement Learning with High Update-To-Data Ratio and State-Action Embedding
 Code for Paper Sample-efficient Multi-agent Reinforcement Learning with High Update-To-Data Ratio and State-Action Embedding.
-This paper is currently submitted to IEEE Transactions on Automation Science and Engineering (T-ASE) for peer review.
+This paper is currently submitted to Ieee Robotics and Automation Letters (RA-L) for peer review.
 ![Alt text](alg_framework.png)
 Please feel free to contact us regarding to the details of implementing MASAE. (Chenyang Miao: cy.miao@siat.ac.cn Yunduan Cui: cuiyunduan@gmail.com)
 
