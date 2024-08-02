@@ -19,7 +19,6 @@ class MujocoModel(parl.Model):
         super(MujocoModel, self).__init__()
         self.actor_model = Actor(obs_dim, action_dim)
         self.critic_model = Critic(obs_dim, action_dim)
-        # 这里将两个encoder分开设定，因为输入不同；
         self.encoder_model1 = Encoder1(obs_dim)
         self.encoder_model2 = Encoder2(action_dim)
 
@@ -102,16 +101,6 @@ class Critic(parl.Model):
         super(Critic, self).__init__()
         self.agent_num = agent_num
 
-        # self.norm1 = nn.LayerNorm(400)
-        """
-        self.norm2 = nn.LayerNorm(300)
-
-        self.l1 = nn.Linear(obs_dim, 400)
-        self.l2 = nn.Linear(400 + action_dim * 2, 300)
-        self.l3 = nn.Linear(300, 1)
-
-        self.dropout = nn.Dropout(dropout_rate)
-        """
         self.norm1 = nn.LayerNorm(256)
         self.norm2 = nn.LayerNorm(256)
         self.dropout = nn.Dropout(dropout_rate)
@@ -121,25 +110,6 @@ class Critic(parl.Model):
         self.l4 = nn.Linear(hdim, 1)
 
     def forward(self, obs, action, zsa, zs):
-        # q = self.l1(obs)
-        # q = self.dropout(q)
-        # q = F.relu(self.norm1(q))
-        # q = F.relu(self.l1(obs))
-        # q = paddle.concat([q, action], 1)
-
-        # q = self.l2(q)
-        # q = self.dropout(q)
-        # q = F.relu(self.norm2(q))
-
-        # return self.l3(q)
-        """
-        # q = self.dropout(F.relu(self.norm1(self.l1(obs))))
-        q = F.relu(self.l1(obs))
-        q = paddle.concat([q, action], 1)
-        # # q = self.dropout(F.relu(self.l2(q)))
-        q = self.dropout(F.relu(self.norm2(self.l2(q))))
-        return self.l3(q)
-        """
         sa = paddle.concat([obs, action], 1)
         embeddings = paddle.concat([zsa, zs], 1)
 
